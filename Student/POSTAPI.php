@@ -4,7 +4,6 @@
 <?php
 	//PCHome支付連
 	$Signup_ID = $row_Data['Signup_ID'];
-	//$Signup_ID = '4';
 	//查詢課程
 	//找尋所有報名課程ID
 	$SQL_SignUpItem=sprintf("SELECT * FROM signup_item WHERE Signup_ID=%s",
@@ -88,13 +87,12 @@
 		$CourseData = mysql_query($SQL_CourseData, $dbline) or die(mysql_error());
 		$row_CourseData = mysql_fetch_assoc($CourseData);
 		$totalRows_CourseData = mysql_num_rows($CourseData);
-		
 		$NowCourseName=$row_CourseData['Course_Name'];
 		array_push($Arr_Commodity,array('name'=>$NowCourseName,'url'=>'#'));
 	}
 	$Arr_ChoseCommodity = array(
-		"order_id" 		=> 	uniqid().'_'.$Signup_No,	//唯一值+帳單編號
-		"pay_type" 		=>	array('ATM'),			//付款方式
+		"order_id" 		=> 	uniqid().'_'.$Signup_No."_".$Signup_ID."_".$colname_MemberID,	//唯一值+帳單編號
+		"pay_type" 		=>	array('ATM'),							//付款方式
 		"amount"   		=>	$Signup_Money,
 		"return_url" 	=>	"https://hccu.eduweb.tw/Modules/Student/AD_Signup_Course.php",
 		"items"			=>	 $Arr_Commodity

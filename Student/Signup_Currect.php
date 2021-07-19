@@ -163,8 +163,8 @@ require_once("../Sign/Insurance_Include.php");
 	/*訂單編號ED*/	
 	if(isset($_GET['Offers_Course'])){ $Signup_Remark=$_GET['Offers_Course'];}else{$Signup_Remark=NULL;}
 	
-	//判斷目前沒有訂單編號與帳號是自己的時
-	/* 
+	//判斷目前沒有訂單編號與帳號是自己的時 
+	/*
 	$updateSQL = sprintf("update signup set Season_Count=%s, Signup_OrderNumber=%s, Season_Bank=%s, Season_BankCode=%s,  Season_Transaction=%s, Season_Fee=%s, Season_BankName=%s, Season_BankAccount=%s, Signup_Money=%s, Signup_Remark=%s, Signup_PayDate=%s,  Signup_PayDeadline=%s, Signup_Status=%s, Unit_ID=%s, Signup_SignupCost=%s, Signup_NewOrOld=%s, Signup_IsSignCost=%s, SignupRecord_ID=%s, SignUnit_ID=%s, Signup_Isinsurance=%s, Insurance_Money=%s, Insurance_IsTeacher=%s  where Signup_ID=%s and Member_ID=%s and Signup_OrderNumber is null",
 	                   GetSQLValueString($SeasonC, "int"),
 					   GetSQLValueString($Signup_No, "text"),
@@ -193,9 +193,10 @@ require_once("../Sign/Insurance_Include.php");
 					   GetSQLValueString($colname_MemberID, "text")
 	);
 	*/
-	$updateSQL = sprintf("update signup set Season_Count=%s, Season_Bank=%s, Season_BankCode=%s,  Season_Transaction=%s, Season_Fee=%s, Season_BankName=%s, Season_BankAccount=%s, Signup_Money=%s, Signup_Remark=%s, Signup_PayDate=%s,  Signup_PayDeadline=%s, Unit_ID=%s, Signup_SignupCost=%s, Signup_NewOrOld=%s, Signup_IsSignCost=%s, SignupRecord_ID=%s, SignUnit_ID=%s, Signup_Isinsurance=%s, Insurance_Money=%s, Insurance_IsTeacher=%s  where Signup_ID=%s and Member_ID=%s and Signup_OrderNumber is null",
+	$updateSQL = sprintf("update signup set Season_Count=%s,Signup_OrderNumber=%s , Season_Bank=%s, Season_BankCode=%s,  Season_Transaction=%s, Season_Fee=%s, Season_BankName=%s, Season_BankAccount=%s, Signup_Money=%s, Signup_Remark=%s, Signup_PayDate=%s,  Signup_PayDeadline=%s,Signup_Status=%s, Unit_ID=%s, Signup_SignupCost=%s, Signup_NewOrOld=%s, Signup_IsSignCost=%s, SignupRecord_ID=%s, SignUnit_ID=%s, Signup_Isinsurance=%s, Insurance_Money=%s, Insurance_IsTeacher=%s  where Signup_ID=%s and Member_ID=%s and Signup_OrderNumber is null",
 	                   GetSQLValueString($SeasonC, "int"),
 					   //GetSQLValueString($Signup_No, "text"),
+					   GetSQLValueString(NULL, "text"),
 					   GetSQLValueString($Season_Bank, "text"),
 					   GetSQLValueString($Season_BankCode, "text"),
 					   GetSQLValueString($Season_Transaction, "text"),
@@ -208,6 +209,7 @@ require_once("../Sign/Insurance_Include.php");
 					   GetSQLValueString($row_Cate3['Season_PayEnd'], "date"),
 					   
 					   //GetSQLValueString("已結單", "text"),
+					   GetSQLValueString(NULL, "text"),
 					   GetSQLValueString($Signup_UnitID, "int"),
 					   GetSQLValueString($Sign_Cost, "int"),
 					   GetSQLValueString($Signup_NewOrOld, "text"),
@@ -230,6 +232,8 @@ require_once("../Sign/Insurance_Include.php");
 	require_once('../../Include/Data_Update_Content.php');
 	require_once("../../Include/Data_BrowseUpdate.php");
 	
+	/*
+	//該處已經移至路徑'RetuAPI.php'
 	$updateSQL = sprintf("update signup_item set Signup_Status=%s, Signup_OrderNumber=%s where Signup_ID=%s ",
 	            GetSQLValueString("已結單", "text"),
 				GetSQLValueString($Signup_No, "text"),
@@ -244,7 +248,8 @@ require_once("../Sign/Insurance_Include.php");
 	);
 	mysql_select_db($database_dbline, $dbline);
 	$Result3 = mysql_query($updateSQL, $dbline) or die(mysql_error());
-		
+	*/
+	
 	//金流API
 	require('POSTAPI.php');
 	mysql_free_result($SeasonData);
