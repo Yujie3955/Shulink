@@ -244,11 +244,7 @@ require_once("../Sign/Insurance_Include.php");
 	);
 	mysql_select_db($database_dbline, $dbline);
 	$Result3 = mysql_query($updateSQL, $dbline) or die(mysql_error());
-	
-
-
-
-	
+		
 	//金流API
 	require('POSTAPI.php');
 	mysql_free_result($SeasonData);
@@ -256,8 +252,7 @@ require_once("../Sign/Insurance_Include.php");
 	mysql_free_result($Money);	
     mysql_free_result($Data);
 	mysql_free_result($Cate3);
-
-
+	
 	//開啟支付連訂單
 	//echo '<script>';
 	//echo 'location.href="'.$payment_url.'"';

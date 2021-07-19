@@ -70,45 +70,7 @@
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); //本機加
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST,'POST');
 	
-	//curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 	$result = curl_exec($ch); 
-	echo $result;
-	
-	/*
-	if(curl_errno($ch)){   
-		echo 'Curl error: ' . curl_error($ch);
-	}
-	*/
-	//$info = curl_getinfo($ch);
-    //print_r('<pre>');
-    //print_r($info);
-	
-	//echo dirname(__FILE__);
-	//curl_close($ch);
-	//print_r($result);
-	/*
-	$ch = curl_init(); 
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	curl_setopt($ch, CURLOPT_URL,$str_url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-	curl_setopt($ch, CURLOPT_POST, true); 
-	curl_setopt($ch, CURLOPT_POSTFIELDS, null); 
-	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); 
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
-	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-	$result = curl_exec($ch); 
-	//echo dirname(__FILE__);
-	curl_close($ch);
-	*/
-	//echo $result;
-	//echo htmlspecialchars($result,ENT_QUOTES);
-	//echo 'Basic'.base64_encode("7ECF295360E69A0EE93900EFE6C4:X9SFbcjdl442xZ_Ya_MMWZlo9RVDiszOSalu9kxM");
-	//BasicN0VDRjI5NTM2MEU2OUEwRUU5MzkwMEVGRTZDNDpYOVNGYmNqZGw0NDJ4Wl9ZYV9NTVdabG85UlZEaXN6T1NhbHU5a3hN
-
-	//$result 裡會有可用的 token, 在失效時間 [expired_timestamp] 之前 token 都有效 
-	//這裡用指定的方式來展示 json 的格式
-	//$result = '{"token":"zHm67sQRuPSO__eiuy2h_lEgtPlS12aVqrcVz3Kc","expired_in":28800,"expired_timestamp":1474470110}'; 
-	//use the token to call api 
 	
 	$token = json_decode($result); 
 	$str_url = 'https://api.pchomepay.com.tw/v1/payment'; 
@@ -116,53 +78,30 @@
 	    'Content-Type:application/json', 
 		'pcpay-token:'.$token->token
 	);
-	
+	//商品陣列
+	$Arr_Commodity=array();
+	//商品課程
+	for($i=0;$i<count($Arr_CourseID);$i++){
+		$SQL_CourseData=sprintf("SELECT * FROM course WHERE Course_ID=%s",
+			GetSQLValueString($Arr_CourseID[$i], "int")
+		);
+		$CourseData = mysql_query($SQL_CourseData, $dbline) or die(mysql_error());
+		$row_CourseData = mysql_fetch_assoc($CourseData);
+		$totalRows_CourseData = mysql_num_rows($CourseData);
+		
+		$NowCourseName=$row_CourseData['Course_Name'];
+		array_push($Arr_Commodity,array('name'=>$NowCourseName,'url'=>'#'));
+	}
 	$Arr_ChoseCommodity = array(
 		"order_id" 		=> 	uniqid().'_'.$Signup_No,	//唯一值+帳單編號
 		"pay_type" 		=>	array('ATM'),			//付款方式
 		"amount"   		=>	$Signup_Money,
-		"return_url" 	=>	"https://hccu.eduweb.tw/Modules/Student/AD_Signup_Course.php"
+		"return_url" 	=>	"https://hccu.eduweb.tw/Modules/Student/AD_Signup_Course.php",
+		"items"			=>	 $Arr_Commodity
 	);
-	echo json_encode($Arr_ChoseCommodity);
-
-
-
-	/* 
-	$requestPayload = '{
-		"order_id":"60eea935bf7c820210714000032",
-		"pay_type":["ATM"],
-		"amount":4600,
-		"return_url":"https:\/\/hccu.eduweb.tw\/Modules\/Student\/AD_Signup_Course.php"
-	}';
-	$requestPayload = '{ 
-		"order_id":"J2016101000005", 
-		"pay_type":["ACCT"], 
-		"amount":100, 
-		"return_url":"http://www.pchomepay.com.tw", 
-		"items":[{"name":"商品名稱","url":"商品連結"}]
-	}';
-	*/
-	/*
-	stdClass Object ( 
-		[order_id] => J2016101000005 
-		[pay_type] => Array ( [0] => ACCT ) 
-		[amount] => 100 
-		[return_url] => http://www.pchomepay.com.tw 
-		[items] => Array ( 
-				[0] => stdClass Object ( [name] => 商品名稱 [url] => 商品連結 ) ) 
-		)
-	$requestPayload = '{ 
-	  "order_id":'.$Signup_No.',	 
-	  "pay_type":["ACCT"], 
-	  "amount":'.$Signup_Money.', 
-	  "return_url":'."http://192.168.98.72/hsin_college/Modules/Student/AD_SignUp_Course.php".', 
-	  "items":[{"name":"商品名稱","url":"商品連結"}] 
-	}';
-	*/
-	//echo $requestPayload;
-	//print_r(json_decode($requestPayload));
-	/*
-	$ch = curl_init(); 
+	$requestPayload=json_encode($Arr_ChoseCommodity);
+	echo $requestPayload;
+	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers); 
 	curl_setopt($ch, CURLOPT_URL,$str_url); 
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
@@ -173,7 +112,12 @@
 	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC); 
 	$result = curl_exec($ch); 
 	curl_close($ch); 
+
 	echo $result;
-	*/
-	exit();
+
+
+	$payment_Data=json_decode($result);
+	foreach($payment_Data as $key=>$value){
+		${$key}=$value;
+	}
 ?>
