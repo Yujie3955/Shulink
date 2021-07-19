@@ -90,6 +90,7 @@
 		$NowCourseName=$row_CourseData['Course_Name'];
 		array_push($Arr_Commodity,array('name'=>$NowCourseName,'url'=>'#'));
 	}
+	$Signup_Money=3;
 	$Arr_ChoseCommodity = array(
 		"order_id" 		=> 	uniqid().'_'.$Signup_No."_".$Signup_ID."_".$colname_MemberID,	//唯一值+帳單編號
 		"pay_type" 		=>	array('ATM'),							//付款方式

@@ -1,13 +1,13 @@
 <?php require_once('../../Connections/dbline.php'); ?>
-<?php require_once('../../Include/web_set.php'); ?>
-<?php require_once('../../Include/menu_upon_common.php'); ?>
+<?php require_once('../../Include/GetSQLValueString.php'); ?>
+<?php //require_once('../../Include/web_set.php'); ?>
+<?php //require_once('../../Include/menu_upon_common.php'); ?>
 <?php //require_once('../../Include/DB_Admin.php'); ?>
 <?php
 	//取得回傳數值
 	/*
 		技術手冊之38頁(PDF檔案)
 			冊頁之29頁(實際頁數)
-		
 		4.13通知部分
 		notify_message ={	
 			"order_id":"151113456789","pay_type":"ATM","amount":"99","fee":null,"cr
@@ -16,14 +16,12 @@
 		}
 		目前使用ATM轉帳方式
 	*/
-
 	//收費回傳指令
 	$notify_message = $_POST['notify_message'];
 	//抓取目前回傳order_ID
 	foreach($notify_message as $Key=>$value){
 		${$Key}=$value;
 	}
-
 	//ID資料
 	/*
 		$OrderID_Data共分四個部分
@@ -34,7 +32,6 @@
 		$OrderID_Data[3]	=  Member_ID(學員編號)
 	*/
 	$OrderID_Data=explode('_',$Order_ID);
-
 	//回傳紀錄
 	$Able=array(
 		'SignUpReturn_Memo','Order_ID1','Order_ID2','SignUp_ID','Add_Time'
@@ -50,8 +47,8 @@
 	$SQL_Test="INSERT INTO signup_return (".implode(',',$Able).") VALUES(".implode(',',$Pas).")";
 	$Result = mysql_query($SQL_Test, $dbline) or die(mysql_error());
 	
-	
 	//正式結單(需要帶回 Signup_OrderNumber欄位、Signup_Status欄位) 
+	/* 
 	$updateSQL = sprintf("update signup set Signup_OrderNumber=%s,Signup_Status=%s WHERE Signup_ID=%s",
 		GetSQLValueString($OrderID_Data[1], "text"),
 		GetSQLValueString("已結單", "text"),
@@ -74,5 +71,6 @@
 	);
 	mysql_select_db($database_dbline, $dbline);
 	$Result3 = mysql_query($updateSQL, $dbline) or die(mysql_error());
-	
+	*/
+
 ?>
