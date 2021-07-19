@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_Remain" value="name:Course_OnlineRemaining;datatype:int" />
+	<infoitem key="UD_Cate" value="name:Signup_ID;datatype:int,name:Season_ID;datatype:int,name:Season_Count;datatype:int,name:Signup_Money;datatype:int,name:Signup_Remark;datatype:string,name:Member_ID;datatype:int,name:Member_UserName;datatype:string,name:Member_Identity;datatype:string,name:Signup_Status;datatype:string,name:Signup_OrderNumber;datatype:string,name:Signup_Virtual;datatype:string,name:Signup_PayDeadline;datatype:date,name:Signup_PayDate;datatype:date,name:Signup_Pipeline;datatype:string,name:Signup_SignupCost;datatype:int,name:Signup_NewOrOld;datatype:string,name:Com_ID;datatype:int,name:Unit_ID;datatype:int,name:Add_Time;datatype:datetime,name:Add_Account;datatype:string,name:Add_Unitname;datatype:string,name:Add_Username;datatype:string,name:Edit_Time;datatype:datetime,name:Edit_Account;datatype:string,name:Edit_Unitname;datatype:string,name:Edit_Username;datatype:string" />
+	<infoitem key="UD_Member" value="name:Member_ID;datatype:int" />
+	<infoitem key="UD_CourseDay" value="name:Course_Day;datatype:int" />
+	<infoitem key="UD_onlinelist" value="name:OnlineTotalNum;datatype:int" />
+</info>

@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_Cate" value="name:Season_SelectStart;datatype:date,name:Season_SelectEnd;datatype:date,name:Season_ID;datatype:int" />
+</info>

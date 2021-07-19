@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_AreaDate" value="name:Com_ID;datatype:int,name:Com_Name;datatype:string,name:Com_Contacts;datatype:string,name:Com_Email;datatype:string,name:Com_Phone;datatype:string,name:Com_Tel;datatype:string,name:Com_Fax;datatype:string,name:Com_Postal;datatype:int,name:Com_CountyCate;datatype:string,name:Com_CountyName;datatype:string,name:Com_Address;datatype:string,name:Com_Longitude;datatype:string,name:Com_Latitude;datatype:string,name:Com_Url;datatype:string,name:Com_Enable;datatype:int,name:Add_Time;datatype:datetime,name:Add_Account;datatype:string,name:Add_Unitname;datatype:string,name:Add_Username;datatype:string,name:Edit_Time;datatype:datetime,name:Edit_Account;datatype:string,name:Edit_Unitname;datatype:string,name:Edit_Username;datatype:string" />
+</info>

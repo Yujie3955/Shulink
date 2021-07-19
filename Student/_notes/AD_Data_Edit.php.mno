@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_County" value="name:County_ID;datatype:int,name:County_Cate;datatype:string,name:County_Name;datatype:string,name:County_Enable;datatype:int,name:County_Sort;datatype:int,name:Add_Time;datatype:datetime,name:Add_Account;datatype:string,name:Add_Unitname;datatype:string,name:Add_Username;datatype:string,name:Edit_Time;datatype:datetime,name:Edit_Account;datatype:string,name:Edit_Unitname;datatype:string,name:Edit_Username;datatype:string" />
+	<infoitem key="UD_Cate2" value="name:Edu_ID;datatype:int,name:Edu_Name;datatype:string,name:Edu_Enable;datatype:int,name:Edu_Sort;datatype:int,name:Add_Time;datatype:datetime,name:Add_Account;datatype:string,name:Add_Unitname;datatype:string,name:Add_Username;datatype:string,name:Edit_Time;datatype:datetime,name:Edit_Account;datatype:string,name:Edit_Unitname;datatype:string,name:Edit_Username;datatype:string" />
+	<infoitem key="UD_Cate3" value="name:Job_ID;datatype:int,name:Job_Name;datatype:string,name:Job_Enable;datatype:int,name:Job_Sort;datatype:int,name:Add_Time;datatype:datetime,name:Add_Account;datatype:string,name:Add_Unitname;datatype:string,name:Add_Username;datatype:string,name:Edit_Time;datatype:datetime,name:Edit_Account;datatype:string,name:Edit_Unitname;datatype:string,name:Edit_Username;datatype:string" />
+</info>

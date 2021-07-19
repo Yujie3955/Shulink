@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_Cate" value="name:Course_ID;datatype:int,name:Com_ID;datatype:int,name:Com_Name;datatype:string,name:Unit_ID;datatype:int,name:Unit_Name;datatype:string,name:Course_NO;datatype:string,name:Course_Name;datatype:string,name:Season_Code;datatype:int,name:CourseKind_Name;datatype:string,name:CourseKind_ID;datatype:int,name:Loc_Name;datatype:string,name:Loc_ID;datatype:int,name:Teacher_UserNamem;datatype:string,name:Course_Start;datatype:time,name:Course_End;datatype:time,name:Season_SelectStart;datatype:date,name:Season_SelectEnd;datatype:date,name:Season_OnsiteStart;datatype:date,name:Season_OnsiteEnd;datatype:date,name:Season_Public;datatype:date,name:Season_PayStart;datatype:date,name:Season_PayEnd;datatype:date,name:Season_PayCode;datatype:string,name:Season_BankCode;datatype:string,name:Rule_ID;datatype:int,name:Add_Time;datatype:datetime" />
+	<infoitem key="UD_Cate2" value="name:Unit_ID;datatype:int,name:Unit_Name;datatype:string" />
+</info>
