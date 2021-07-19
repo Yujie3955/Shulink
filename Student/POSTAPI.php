@@ -111,11 +111,7 @@
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
 	curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC); 
 	$result = curl_exec($ch); 
-	curl_close($ch); 
-
-	echo $result;
-
-
+	curl_close($ch);
 	$payment_Data=json_decode($result);
 	foreach($payment_Data as $key=>$value){
 		${$key}=$value;

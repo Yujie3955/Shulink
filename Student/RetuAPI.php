@@ -15,13 +15,26 @@
 			234567891234567","bank_code":"412","expire_date":"15678989678"
 		}
 	*/
+	//收費回傳指令
 	$notify_message = $_POST['notify_message'];
-	$SQL_Test=sprintf("INSERT INTO signup_return (SignUpReturn_Memo,Add_Time) VALUES(%s,%s)",
+	
+	//抓取目前回傳order_ID
+	foreach($notify_message as $Key=>$value){
+		${$Key}=$value;
+	}
+	$SQL_Test=sprintf("INSERT INTO signup_return (SignUpReturn_Memo,Order_ID1,Order_ID2,Add_Time) VALUES(%s,%s,%s,%s)",
 		GetSQLValueString($notify_message, "text"),
+		GetSQLValueString($Order_ID1, "text"),
+		GetSQLValueString($Order_ID2, "text"),
 		GetSQLValueString(date('Y-m-d H:i:s'), "date")
 	);
 	$Result = mysql_query($SQL_Test, $dbline) or die(mysql_error());
+
 	
+
+
+
+
 
 	
 	//if(isset($_POST['order_id'])){
